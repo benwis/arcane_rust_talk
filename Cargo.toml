@@ -1,0 +1,18 @@
+[workspace]
+resolver = "3"
+members = [
+    "exercises/01-autoderef",
+    "exercises/02-complex-key-borrow",
+    "exercises/04-tacit-params",
+    "exercises/05-handler-trait",
+    "exercises/06-const-assertions",
+]
+# The semver trick needs two versions of the same crate in one dependency
+# graph, and its starting state deliberately fails to compile, so it lives in
+# its own workspace.
+exclude = ["exercises/03-semver-trick"]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.85"
+publish = false

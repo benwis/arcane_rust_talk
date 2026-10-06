@@ -1,0 +1,11 @@
+# A separate workspace: the starting state deliberately doesn't compile.
+[workspace]
+resolver = "3"
+members = ["app", "shapes", "render"]
+# Two different versions of the `geom` package. They're path dependencies
+# here, but imagine they're on crates.io.
+exclude = ["geom-0.1", "geom-0.2", "solution"]
+
+[workspace.package]
+edition = "2024"
+publish = false

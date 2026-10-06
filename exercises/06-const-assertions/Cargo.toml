@@ -1,0 +1,11 @@
+[package]
+name = "const-assertions"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[features]
+# `cargo test -p const-assertions --features solution` runs the tests against the
+# reference solution instead of your exercise.
+solution = []

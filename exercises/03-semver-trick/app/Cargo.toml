@@ -1,0 +1,9 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+shapes = { path = "../shapes" }
+render = { path = "../render" }

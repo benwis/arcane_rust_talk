@@ -1,0 +1,9 @@
+# Someone else's crate. It hasn't upgraded to geom 0.2, and you can't make it.
+[package]
+name = "shapes"
+version = "0.1.0"
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+geom = { version = "0.1", path = "../geom-0.1" }

@@ -1,0 +1,7 @@
+# Seeds for failure cases proptest has generated in the past. It is
+# automatically read and these particular cases re-run before any
+# novel cases are generated.
+#
+# It is recommended to check this file in to source control so that
+# everyone who runs the test benefits from these saved cases.
+cc 621fd754d1ae02a84ed9f16fee9851e2354467aa42ed39bacf2200f07e3222ea # shrinks to owned1 = OwnedKey { s: "", bytes: [] }, owned2 = OwnedKey { s: "", bytes: [] }

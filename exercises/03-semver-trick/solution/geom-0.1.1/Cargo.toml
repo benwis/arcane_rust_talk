@@ -1,0 +1,9 @@
+[package]
+name = "geom"
+version = "0.1.1"
+edition = "2024"
+publish = false
+
+[dependencies]
+# Yes: geom 0.1.1 depends on geom 0.2.
+geom02 = { package = "geom", version = "0.2", path = "../../geom-0.2" }
