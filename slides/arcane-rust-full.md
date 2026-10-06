@@ -175,6 +175,14 @@ speaker_note: |
   [click] This is why Rc and Arc use associated functions for their own API:
   Rc::strong_count(&rc), Rc::get_mut(&mut rc). Methods on Rc would shadow
   methods on whatever's inside, because the outer type is probed first.
+  The as_ptr example: Rc::as_ptr is an associated function, so
+  rc.as_ptr() falls through to Vec::as_ptr. If it were a method, the probe
+  would find it first (at &Rc) and the same call would return a different
+  type pointing at a different address: the Vec struct, not the buffer.
+  In unsafe/FFI code that compiles and reads the wrong memory. Box does
+  the same (Box::into_raw, so Box<CString>.into_raw() still gives a
+  *mut c_char), and the Rc docs say it's deliberate: it "avoids conflicts
+  with methods of the inner type T".
   Same reason adding a trait impl to a smart pointer can silently change
   which method existing code calls.
 -->
@@ -203,6 +211,12 @@ isn't even a candidate until step 4.
 
 This is why `Rc` uses `Rc::strong_count(&rc)`, not `rc.strong_count()`: a
 method on the smart pointer would shadow one on whatever it points to.
+
+```rust
+let rc: Rc<Vec<u8>> = Rc::new(vec![1, 2, 3]);
+rc.as_ptr()       // Vec::as_ptr → *const u8: the heap buffer
+Rc::as_ptr(&rc)   // Rc::as_ptr  → *const Vec<u8>: the Vec inside the Rc
+```
 
 
 <!-- end_slide -->
