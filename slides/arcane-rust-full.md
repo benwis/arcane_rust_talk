@@ -172,7 +172,7 @@ speaker_note: |
   Ask: who wins? Many people say inherent, because "inherent always wins".
   [click] The trait on Smart matches at step 2 (&Smart). Foo isn't a
   candidate until we deref, at step 4.
-  This is why Rc and Arc use associated functions for their own API:
+  [click] This is why Rc and Arc use associated functions for their own API:
   Rc::strong_count(&rc), Rc::get_mut(&mut rc). Methods on Rc would shadow
   methods on whatever's inside, because the outer type is probed first.
   Same reason adding a trait impl to a smart pointer can silently change
@@ -198,6 +198,11 @@ Smart(Foo).name()   // ???
 
 **`"Smart (trait)"`**: `Named::name` matches at `&Smart` (step 2), and `Foo`
 isn't even a candidate until step 4.
+
+<!-- pause -->
+
+This is why `Rc` uses `Rc::strong_count(&rc)`, not `rc.strong_count()`: a
+method on the smart pointer would shadow one on whatever it points to.
 
 
 <!-- end_slide -->
